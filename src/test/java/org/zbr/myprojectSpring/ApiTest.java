@@ -1,11 +1,14 @@
 package org.zbr.myprojectSpring;
 
 import org.junit.jupiter.api.Test;
-import org.zbr.myprojectSpring.bean.UserService;
+import org.zbr.myprojectSpring.beans.BeanFactory;
+import org.zbr.myprojectSpring.beans.UserService;
+import org.zbr.myprojectSpring.beans.factory.config.BeanDefinition;
+import org.zbr.myprojectSpring.beans.factory.support.DefaultListableBeanFactory;
 
 public class ApiTest {
 
-    @Test
+/*    @Test
     public void test_BeanFactory(){
         // 1.初始化 BeanFactory
         BeanFactory beanFactory = new BeanFactory();
@@ -17,5 +20,22 @@ public class ApiTest {
         // 3.获取 bean
         UserService userService = (UserService) beanFactory.getBean("userService");
         userService.queryUserInfo();
+    }*/
+
+    @Test
+    public void test_BeanFactory(){
+        // 初始化获取注册表的方法
+        DefaultListableBeanFactory beanFactory  = new DefaultListableBeanFactory();
+        //注册beanDefinition
+        BeanDefinition beanDefinition = new BeanDefinition(UserService.class);
+        beanFactory .registerBeanDefinition("userService", beanDefinition);
+
+        UserService userService = (UserService) beanFactory.getBean("userService");
+        userService.queryUserInfo();
+        // 4.第二次获取 bean from Singleton
+        UserService userService_singleton = (UserService) beanFactory.getBean("userService");
+        userService_singleton.queryUserInfo();
+
+
     }
 }

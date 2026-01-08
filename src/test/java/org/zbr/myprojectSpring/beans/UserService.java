@@ -1,4 +1,4 @@
-package org.zbr.myprojectSpring.bean;
+package org.zbr.myprojectSpring.beans;
 
 public class UserService {
     public void queryUserInfo(){

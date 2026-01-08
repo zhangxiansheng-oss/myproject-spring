@@ -1,0 +1,13 @@
+基础的两个类
+BeanDefinition 存放对象的class
+SingletonBeanRegistry  获取key  object 的接口类
+BeanFactory 获取object的接口
+
+DefaultSingletonBeanRegistry 实现 SingletonBeanRegistry 获取，另外写了一个存放的方法
+
+
+BeanDefinitionRegistry   注册存放key BeanDefinition 的接口类
+AbstractBeanFactory 利用模板获取object的实现类 只关注获取object
+AbstractAutowireCapableBeanFactory 实现 AbstractBeanFactory 中 从BeanDefinition 到 object
+DefaultListableBeanFactory 获取AbstractBeanFactory 中 key BeanDefinition 的方法和实现  BeanDefinitionRegistry  注册
+注册存放key BeanDefinition 的
