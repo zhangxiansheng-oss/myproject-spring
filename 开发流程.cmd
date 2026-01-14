@@ -11,3 +11,5 @@ AbstractBeanFactory 利用模板获取object的实现类 只关注获取object
 AbstractAutowireCapableBeanFactory 实现 AbstractBeanFactory 中 从BeanDefinition 到 object
 DefaultListableBeanFactory 获取AbstractBeanFactory 中 key BeanDefinition 的方法和实现  BeanDefinitionRegistry  注册
 注册存放key BeanDefinition 的
+
+InstantiationStrategy 实例化接口
