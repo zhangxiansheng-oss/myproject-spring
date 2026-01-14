@@ -11,17 +11,26 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry  
     @Override
     // 实现BeanFactory获取bean对象,模板方法，只关注能直接获取到bean对象
     public Object getBean(String beanName) throws BeansException {
-        Object bean  =  getSingleton(beanName);
-        if (null != bean){
-            return bean;
-        }
-        BeanDefinition beanDefinition = getBeanDefinition(beanName);
-        return creatBean(beanName,beanDefinition);
+        return  doGetBean(beanName,null);
     }
-   // 获取bean管理对象
+
+    @Override
+    public Object getBean(String beanName, Object... args) throws BeansException {
+        return  doGetBean(beanName,args);
+    }
+
+    protected  <T> T doGetBean(final String name,final  Object[] args){
+        Object bean  =  getSingleton(name);
+        if (null != bean){
+            return  (T)bean;
+        }
+        BeanDefinition beanDefinition = getBeanDefinition(name);
+        return (T)creatBean(name,beanDefinition,args);
+    }
+    // 获取bean管理对象
     protected  abstract BeanDefinition getBeanDefinition(String beanName) throws  BeansException;
     // 创建bean类
-    protected  abstract  Object creatBean(String beanName,BeanDefinition beanDefinition) throws  BeansException;
+    protected  abstract  Object creatBean(String beanName,BeanDefinition beanDefinition,Object[] args) throws  BeansException;
 
 }
 
